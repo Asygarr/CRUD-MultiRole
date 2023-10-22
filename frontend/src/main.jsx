@@ -5,6 +5,9 @@ import { Provider } from "react-redux";
 import { store } from "./app/reducer.js";
 import App from "./App.jsx";
 import "bulma/css/bulma.css";
+import axios from "axios";
+
+axios.defaults.withCredentials = true;
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
