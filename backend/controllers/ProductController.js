@@ -31,7 +31,7 @@ export const getProduct = async (req, res) => {
     }
     res.status(200).json(response);
   } catch (error) {
-    console.log(error);
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -75,7 +75,7 @@ export const getProductsById = async (req, res) => {
     }
     res.status(200).json(response);
   } catch (error) {
-    console.log(error);
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -90,7 +90,7 @@ export const createProduct = async (req, res) => {
     });
     res.status(201).json({ message: "Product created" });
   } catch (error) {
-    console.log(error);
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -135,7 +135,7 @@ export const updateProduct = async (req, res) => {
     }
     res.status(200).json({ message: "Product telah di update" });
   } catch (error) {
-    console.log(error);
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -168,6 +168,6 @@ export const deleteProduct = async (req, res) => {
     }
     res.status(200).json({ message: "Product telah di hapus" });
   } catch (error) {
-    console.log(error);
+    res.status(500).json({ message: error.message });
   }
 };
