@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
-import { store } from "./app/store";
+import { store } from "./auth/store";
 import App from "./App.jsx";
 import "bulma/css/bulma.css";
 import axios from "axios";

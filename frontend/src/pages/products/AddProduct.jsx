@@ -4,7 +4,7 @@ import Layout from "../../layouts/Main";
 import FormAddProduct from "../../contents/products/FormAddProduct";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getMe } from "../auth/authSlice";
+import { getMe } from "../../auth/authSlice";
 
 const AddProduct = () => {
   const dispatch = useDispatch();
