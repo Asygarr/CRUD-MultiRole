@@ -44,7 +44,7 @@ const ProductList = () => {
               <td>
                 <Link
                   to={`/products/edit/${product.uuid}`}
-                  className="button is-small is-info"
+                  className="button is-small mr-1 is-info"
                 >
                   Edit
                 </Link>
