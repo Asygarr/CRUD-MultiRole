@@ -1,7 +1,36 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const FormAddUser = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [pass, setPass] = useState("");
+  const [confirmPass, setConfirmPass] = useState("");
+  const [role, setRole] = useState("");
+  const [massage, setMassage] = useState("");
+
+  const navigate = useNavigate();
+
+  const saveUser = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post("http://localhost:5000/users", {
+        name,
+        email,
+        password: pass,
+        confirmPassword: confirmPass,
+        role,
+      });
+      navigate("/users");
+    } catch (error) {
+      if (error.response) {
+        setMassage(error.response.data.message);
+      }
+    }
+  };
+
   return (
     <div>
       <h1 className="title">Users</h1>
@@ -10,19 +39,31 @@ const FormAddUser = () => {
       <div className="card is-shadowless">
         <div className="card-content">
           <div className="content">
-
-            <form>
+            <form onSubmit={saveUser}>
+              <p className="has-text-centered">{massage}</p>
               <div className="field">
                 <label className="label">Name</label>
                 <div className="control">
-                  <input type="text" className="input" placeholder="name" />
+                  <input
+                    type="text"
+                    className="input"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="name"
+                  />
                 </div>
               </div>
 
               <div className="field">
                 <label className="label">Email</label>
                 <div className="control">
-                  <input type="text" className="input" placeholder="email" />
+                  <input
+                    type="text"
+                    className="input"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="email"
+                  />
                 </div>
               </div>
 
@@ -32,6 +73,8 @@ const FormAddUser = () => {
                   <input
                     type="password"
                     className="input"
+                    value={pass}
+                    onChange={(e) => setPass(e.target.value)}
                     placeholder="*****"
                   />
                 </div>
@@ -43,6 +86,8 @@ const FormAddUser = () => {
                   <input
                     type="password"
                     className="input"
+                    value={confirmPass}
+                    onChange={(e) => setConfirmPass(e.target.value)}
                     placeholder="*****"
                   />
                 </div>
@@ -52,17 +97,23 @@ const FormAddUser = () => {
                 <label className="label">Role</label>
                 <div className="control">
                   <div className="select is-fullwidth">
-                    <select>
+                    <select
+                      value={role}
+                      onChange={(e) => setRole(e.target.value)}
+                    >
+                      <option value="">Select Role</option>
                       <option value="admin">Admin</option>
                       <option value="user">User</option>
                     </select>
                   </div>
                 </div>
               </div>
-              
+
               <div className="field">
                 <div className="control">
-                  <button className="button is-success">Save</button>
+                  <button type="submit" className="button is-success">
+                    Save
+                  </button>
                 </div>
               </div>
             </form>
